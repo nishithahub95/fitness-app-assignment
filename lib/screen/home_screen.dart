@@ -1,8 +1,10 @@
 import 'dart:ui';
 import 'package:badges/badges.dart';
 import 'package:fitness_app/constans/color_file.dart';
+import 'package:fitness_app/model/exercise.dart';
 import 'package:fitness_app/model/program.dart';
-import 'package:fitness_app/screen/action_button.dart';
+import 'package:fitness_app/screen/components/action_button.dart';
+import 'package:fitness_app/screen/create_exercies.dart';
 import 'package:fitness_app/screen/create_program.dart';
 import 'package:flutter/material.dart';
 
@@ -15,11 +17,17 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Program> programList = [];
+  List<Exercise> exercisList=[];
   @override
   Widget build(BuildContext context) {
     void addNewProgram(Program program) {
       setState(() {
         programList.add(program);
+      });
+    }
+    void addNewExercise(Exercise exercise) {
+      setState(() {
+        exercisList.add(exercise);
       });
     }
 
@@ -29,6 +37,17 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (_) {
             return AlertDialog(
               content: CreateProgram(addNewProgram),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)),
+            );
+          });
+    }
+    void showexerciseForm() {
+      showDialog(
+          context: context,
+          builder: (_) {
+            return AlertDialog(
+              content: CreateExercise(addNewExercise),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),
             );
@@ -110,7 +129,9 @@ class _HomeScreenState extends State<HomeScreen> {
             top: 120,
             left: 230,
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                showexerciseForm();
+              },
               child: const ActionButton(
                 theWidth: 160.0,
                 theHeight: 50.0,

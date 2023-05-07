@@ -1,5 +1,6 @@
 import 'package:fitness_app/constans/color_file.dart';
 import 'package:fitness_app/model/program.dart';
+import 'package:fitness_app/screen/components/gradiant_button.dart';
 import 'package:flutter/material.dart';
 
 class CreateProgram extends StatefulWidget {
@@ -80,25 +81,7 @@ class _CreateProgramState extends State<CreateProgram> {
                   widget.addProgram(program);
                   Navigator.of(context).pop();
                 },
-                child: Container(
-                  height: 50,
-                  width: 300,
-                  decoration: BoxDecoration(
-                      color: Colors.teal,
-                      borderRadius: BorderRadius.circular(30),
-                      gradient: const LinearGradient(
-                        colors: [Color(0xff000046), Color(0xff1CB5E0)],
-                        //begin: Alignment.,
-                        //end: Alignment.bottomCenter
-                        //
-                      )),
-                  child: const Center(
-                    child: Text(
-                      'Submit',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
+                child: GradiantButton('submit')
               ),
             ],
           ),
