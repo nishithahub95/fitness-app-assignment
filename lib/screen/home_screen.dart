@@ -233,7 +233,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               );
                             }),
                       ),
-                      Text('Programs....',style: TextStyle(color:headColor,fontSize: 20,fontWeight: FontWeight.w700 ),),
+                      //Text('Programs....',style: TextStyle(color:headColor,fontSize: 20,fontWeight: FontWeight.w700 ),),
                     ],
                   ),
                 ),
