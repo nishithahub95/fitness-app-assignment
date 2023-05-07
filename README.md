@@ -1,14 +1,16 @@
 fitness_app
-Ui created for fitness app.
+
+ Ui created for fitness app.
 
 Features
-Three screens created.
+ 
+ Three screens created.
 
-1.HomeScreen
+  1.HomeScreen
 
-contain 2 button:-Create program and create exercise. It also contain program lists created.
+   contain 2 button:-Create program and create exercise. It also contain program lists created.
 
-2.CreateProgram
+   2.CreateProgram
 
  It is for addin programs.
 3.CreateExercise
