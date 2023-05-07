@@ -42,6 +42,19 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           });
     }
+    void editProgramForm(int index) {
+      showDialog(
+          context: context,
+          builder: (_) {
+            return AlertDialog(
+              content: CreateProgram((p0) => null),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)),
+            );
+          });
+    }
+
+
     void showexerciseForm() {
       showDialog(
           context: context,
@@ -168,11 +181,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Text('Programs....',style: TextStyle(color:headColor,fontSize: 20,fontWeight: FontWeight.w700 ),),
                       Expanded(
+                        flex: 1,
                         child: ListView.builder(
                             itemCount: programList.length,
                             itemBuilder: (context, index) {
                               return Card(
-
                                 elevation: 8,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -185,13 +198,31 @@ class _HomeScreenState extends State<HomeScreen> {
                                         mainAxisSize: MainAxisSize.min,
 
                                         children: [
-                                          Text(programList[index].goal.toString())
+                                          Text(programList[index].goal.toString(),style: TextStyle(fontSize: 18,color: headColor),),
+                                          SizedBox(height: 3,),
+                                          Text(programList[index].level.toString(),style: TextStyle(fontSize: 15,color: iconColor),),
+                                          SizedBox(height: 3,),
+                                          Text(programList[index].type.toString(),style: TextStyle(fontSize: 15,color: iconColor),),
+                                          SizedBox(height: 3,),
+                                          Text(programList[index].time.toString(),style: TextStyle(fontSize: 15,color: iconColor),),
                                         ],
                                       ),
                                       Column(
                                         children: [
-                                         Icon(Icons.edit,color: iconColor,) ,
-                                          Icon(Icons.delete,color: iconColor,) ,
+                                         InkWell(
+                                             onTap: (){
+                                               editProgramForm(index);
+
+                                             },
+                                             child: Icon(Icons.edit,color: iconColor,)) ,
+                                          InkWell(
+                                              onTap: (){
+                                                setState(() {
+                                                  programList.removeAt(index);
+                                                });
+
+                                              },
+                                              child: Icon(Icons.delete,color: iconColor,)) ,
                                           Icon(Icons.expand_circle_down_outlined,color: iconColor,) ,
 
                                         ],
@@ -202,6 +233,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               );
                             }),
                       ),
+                      Text('Programs....',style: TextStyle(color:headColor,fontSize: 20,fontWeight: FontWeight.w700 ),),
                     ],
                   ),
                 ),

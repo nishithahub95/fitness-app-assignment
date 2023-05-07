@@ -15,11 +15,12 @@ class CreateExercise extends StatefulWidget {
 }
 
 class _CreateExerciseState extends State<CreateExercise> {
+
   TextEditingController exerciseController = TextEditingController();
   TextEditingController setsController = TextEditingController();
   TextEditingController repsController = TextEditingController();
-
-
+  List<Exercise> exercisList=[];
+ var isLoading=true;
   @override
   Widget build(BuildContext context) {
     Widget buildTextFormField(String label, TextEditingController controller) {
@@ -54,6 +55,14 @@ class _CreateExerciseState extends State<CreateExercise> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            DropdownButton(
+                hint: Text('Exercises....'),
+                items: exercisList.map((e){
+              return DropdownMenuItem(
+                value: e.sets.toString(),
+                  child: Text(e.ename));
+            }).toList(), onChanged: (_){}),
+
              Text(
               'Create Exercises',
               style: TextStyle(

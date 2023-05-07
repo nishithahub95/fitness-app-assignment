@@ -10,6 +10,7 @@ class CreateProgram extends StatefulWidget {
 
   @override
   State<CreateProgram> createState() => _CreateProgramState();
+
 }
 
 class _CreateProgramState extends State<CreateProgram> {
@@ -19,6 +20,9 @@ class _CreateProgramState extends State<CreateProgram> {
   TextEditingController durationController = TextEditingController();
   TextEditingController daysController = TextEditingController();
   TextEditingController timeController = TextEditingController();
+  int selectedIndex = -1;
+
+  List<Program> programList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -40,53 +44,71 @@ class _CreateProgramState extends State<CreateProgram> {
     }
 
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.cover, image: AssetImage('images/fit.jpg'))),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Text(
-                'Create you Program',
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xff000046)),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
-              ),
-              buildTextFormField('Main Goal', goalController),
-              buildTextFormField('Workout Type', typeController),
-              buildTextFormField('Training Level', levelController),
-              buildTextFormField('Program Duration', durationController),
-              buildTextFormField('Days Per Week', daysController),
-              buildTextFormField('Time Per Workout', timeController),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.05,
-              ),
-              InkWell(
-                onTap: () {
-                  final program = Program(
-                      goalController.text,
-                      typeController.text,
-                      levelController.text,
-                      durationController.text,
-                      daysController.text,
-                      timeController.text);
-                  widget.addProgram(program);
-                  Navigator.of(context).pop();
-                },
-                child: GradiantButton('submit')
-              ),
-            ],
+      body: SingleChildScrollView(
+        child: Container(
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.cover, image: AssetImage('images/fit.jpg'))),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text(
+                  'Create you Program',
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xff000046)),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                ),
+                buildTextFormField('Main Goal', goalController),
+                buildTextFormField('Workout Type', typeController),
+                buildTextFormField('Training Level', levelController),
+                buildTextFormField('Program Duration', durationController),
+                buildTextFormField('Days Per Week', daysController),
+                buildTextFormField('Time Per Workout', timeController),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                ),
+                InkWell(
+                    onTap: () {
+                      final program = Program(
+                          goalController.text,
+                          typeController.text,
+                          levelController.text,
+                          durationController.text,
+                          daysController.text,
+                          timeController.text);
+                      widget.addProgram(program);
+                      Navigator.of(context).pop();
+                    },
+                    child: GradiantButton('submit')
+                ),
+
+
+              ],
+            ),
           ),
         ),
       ),
     );
+
+
+  }
+  void editForm(int index){
+    goalController.text=programList[index].goal.toString();
+    typeController.text=programList[index].type.toString();
+    levelController.text=programList[index].level.toString();
+    durationController.text=programList[index].duration.toString();
+    daysController.text=programList[index].day.toString();
+    timeController.text=programList[index].time.toString();
+    setState(() {
+      selectedIndex = index;
+    });
+
   }
 }
