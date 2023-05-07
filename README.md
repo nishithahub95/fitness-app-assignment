@@ -1,8 +1,8 @@
-fitness_app
+#fitness_app
 
  Ui created for fitness app.
 
-Features
+#Features
  
  Three screens created.
 
@@ -18,7 +18,7 @@ Features
 
      It is for adding exercise.
      
-Screenshots
+#Screenshots
 ![2023-05-07](https://user-images.githubusercontent.com/123442720/236679751-5a3ac01c-a4ab-4386-95ff-7a150afef5a4.png)
 ![2023-05-07 (1)](https://user-images.githubusercontent.com/123442720/236679759-ed51b4ae-2512-4452-aa53-286f9e47e7b7.png)
 
